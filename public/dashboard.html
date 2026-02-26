@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">KrishiShakti</span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search sensors, data...">
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                <span class="icon">🔔</span>
+                <span class="badge">3</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">⚙️</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+                <div class="user-dropdown">
+                    <div class="user-info">
+                        <div class="user-name" id="user-name">User</div>
+                        <div class="user-email" id="user-email">user@example.com</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">👤 Profile</a>
+                    <a href="#" class="dropdown-item">⚙️ Settings</a>
+                    <a href="#" class="dropdown-item">📊 Analytics</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item active">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="agriculture.html" class="menu-item">
+                <span class="menu-icon">🌱</span>
+                <span class="menu-text">Agriculture AI</span>
+            </a>
+            <a href="chatbot.html" class="menu-item">
+                <span class="menu-icon">🤖</span>
+                <span class="menu-text">AI Chatbot</span>
+            </a>
+            <a href="alerts.html" class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="container">
+        <!-- Welcome Header -->
+        <div class="welcome-header">
+            <div class="welcome-text">
+                <h1>Welcome back, <span id="welcome-user">User</span>! 👋</h1>
+                <p>Here's what's happening with your environmental system today</p>
+                <div class="location-info">
+                    <span class="location-icon">📍</span>
+                    <span id="location-text">Detecting location...</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="status-indicator">
+                    <span id="connection-status" class="status-dot connected"></span>
+                    <div class="status-text">
+                        <span class="status-label">System Status</span>
+                        <span class="status-value">All Systems Operational</span>
+                    </div>
+                </div>
+                <div class="last-update-box">
+                    <span class="update-icon">🕐</span>
+                    <div class="update-text">
+                        <span class="update-label">Last Update</span>
+                        <span id="last-update" class="update-value">Just now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card-mini good">
+                <div class="stat-mini-icon">💨</div>
+                <div class="stat-mini-content">
+                    <span class="stat-mini-label">Air Quality</span>
+                    <span class="stat-mini-value" id="quick-air">Good</span>
+                </div>
+            </div>
+            <div class="stat-card-mini info">
+                <div class="stat-mini-icon">🌡️</div>
+                <div class="stat-mini-content">
+                    <span class="stat-mini-label">Temperature</span>
+                    <span class="stat-mini-value" id="quick-temp">--°C</span>
+                </div>
+            </div>
+            <div class="stat-card-mini success">
+                <div class="stat-mini-icon">💧</div>
+                <div class="stat-mini-content">
+                    <span class="stat-mini-label">Water Level</span>
+                    <span class="stat-mini-value" id="quick-water">--%</span>
+                </div>
+            </div>
+            <div class="stat-card-mini warning">
+                <div class="stat-mini-icon">📊</div>
+                <div class="stat-mini-content">
+                    <span class="stat-mini-label">Active Sensors</span>
+                    <span class="stat-mini-value">4/4</span>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <div class="sensor-grid">
+                <!-- Air Quality Sensor -->
+                <div class="sensor-card modern-card">
+                    <div class="card-header">
+                        <div class="sensor-icon-large gradient-purple">💨</div>
+                        <div class="card-badge">Live</div>
+                    </div>
+                    <h3>Air Quality Monitor</h3>
+                    <p class="sensor-name">MQ-135 Gas Sensor</p>
+                    <div class="sensor-value-modern">
+                        <span id="mq135-value" class="value-large">--</span>
+                        <span class="unit-large">ppm</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="mq135-progress" style="width: 0%"></div>
+                    </div>
+                    <div class="sensor-status modern-status" id="mq135-status">
+                        <span class="status-dot"></span>
+                        <span>Waiting for data...</span>
+                    </div>
+                </div>
+
+                <!-- Particulate Matter Sensor -->
+                <div class="sensor-card modern-card">
+                    <div class="card-header">
+                        <div class="sensor-icon-large gradient-orange">🌫️</div>
+                        <div class="card-badge">Live</div>
+                    </div>
+                    <h3>Particulate Matter</h3>
+                    <p class="sensor-name">PMS5003 Sensor</p>
+                    <div class="dual-values">
+                        <div class="dual-value-item">
+                            <span class="dual-label">PM2.5</span>
+                            <div class="dual-number">
+                                <span id="pm25-value">--</span>
+                                <span class="dual-unit">µg/m³</span>
+                            </div>
+                        </div>
+                        <div class="dual-divider"></div>
+                        <div class="dual-value-item">
+                            <span class="dual-label">PM10</span>
+                            <div class="dual-number">
+                                <span id="pm10-value">--</span>
+                                <span class="dual-unit">µg/m³</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sensor-status modern-status" id="pms-status">
+                        <span class="status-dot"></span>
+                        <span>Waiting for data...</span>
+                    </div>
+                </div>
+
+                <!-- Temperature & Humidity Sensor -->
+                <div class="sensor-card modern-card">
+                    <div class="card-header">
+                        <div class="sensor-icon-large gradient-red">🌡️</div>
+                        <div class="card-badge">Live</div>
+                    </div>
+                    <h3>Climate Monitor</h3>
+                    <p class="sensor-name">DHT22 Sensor</p>
+                    <div class="dual-values">
+                        <div class="dual-value-item">
+                            <span class="dual-label">Temperature</span>
+                            <div class="dual-number">
+                                <span id="temp-value">--</span>
+                                <span class="dual-unit">°C</span>
+                            </div>
+                        </div>
+                        <div class="dual-divider"></div>
+                        <div class="dual-value-item">
+                            <span class="dual-label">Humidity</span>
+                            <div class="dual-number">
+                                <span id="humidity-value">--</span>
+                                <span class="dual-unit">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sensor-status modern-status" id="dht-status">
+                        <span class="status-dot"></span>
+                        <span>Waiting for data...</span>
+                    </div>
+                </div>
+
+                <!-- Water Tank Level Sensor -->
+                <div class="sensor-card modern-card">
+                    <div class="card-header">
+                        <div class="sensor-icon-large gradient-blue">💧</div>
+                        <div class="card-badge">Live</div>
+                    </div>
+                    <h3>Water Tank Level</h3>
+                    <p class="sensor-name">FC-28 Sensor</p>
+                    <div class="sensor-value-modern">
+                        <span id="fc28-value" class="value-large">--</span>
+                        <span class="unit-large">%</span>
+                    </div>
+                    <div class="water-tank-visual">
+                        <div class="tank-container">
+                            <div class="water-fill" id="water-fill" style="height: 0%"></div>
+                            <div class="tank-waves"></div>
+                        </div>
+                    </div>
+                    <div class="sensor-status modern-status" id="fc28-status">
+                        <span class="status-dot"></span>
+                        <span>Waiting for data...</span>
+                    </div>
+                </div>
+
+                <!-- System Info -->
+                <div class="sensor-card modern-card system-card-modern">
+                    <div class="card-header">
+                        <div class="sensor-icon-large gradient-dark">⚙️</div>
+                        <div class="card-badge success">Active</div>
+                    </div>
+                    <h3>System Status</h3>
+                    <p class="sensor-name">Arduino Uno Controller</p>
+                    <div class="system-info-modern">
+                        <div class="info-item">
+                            <div class="info-icon">🔌</div>
+                            <div class="info-content">
+                                <span class="info-label">Active Sensors</span>
+                                <span class="info-value" id="active-sensors">4/4</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">⏱️</div>
+                            <div class="info-content">
+                                <span class="info-label">System Uptime</span>
+                                <span class="info-value" id="uptime">--</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📊</div>
+                            <div class="info-content">
+                                <span class="info-label">Data Points</span>
+                                <span class="info-value" id="data-points">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>📊 Historical Data (from Google Sheets)</h2>
+                <div class="data-source">
+                    <span id="data-source-badge">Loading...</span>
+                </div>
+                <div id="history-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>MQ-135</th>
+                                <th>Temp</th>
+                                <th>Humidity</th>
+                                <th>PM2.5</th>
+                                <th>PM10</th>
+                                <th>Tank Level</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 20px;">
+                                    Loading data from Google Sheets...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Air Purification + Water Generation System | Arduino Uno Based IoT Project</p>
+        </footer>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const user = localStorage.getItem('krishishakti_user') || sessionStorage.getItem('krishishakti_user');
+        if (!user) {
+            window.location.href = '/login.html';
+        } else {
+            const userData = JSON.parse(user);
+            document.getElementById('user-name').textContent = userData.name || 'User';
+            document.getElementById('user-email').textContent = userData.email || '';
+            document.getElementById('user-initial').textContent = (userData.name || 'U')[0].toUpperCase();
+        }
+
+        function logout() {
+            localStorage.removeItem('krishishakti_user');
+            sessionStorage.removeItem('krishishakti_user');
+            window.location.href = '/login.html';
+        }
+    </script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

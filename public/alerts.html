@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">KrishiShakti</span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search alerts...">
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                <span class="icon">🔔</span>
+                <span class="badge">3</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">⚙️</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+                <div class="user-dropdown">
+                    <div class="user-info">
+                        <div class="user-name" id="user-name">User</div>
+                        <div class="user-email" id="user-email">user@example.com</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">👤 Profile</a>
+                    <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+                    <a href="analytics.html" class="dropdown-item">📊 Analytics</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="alerts.html" class="menu-item active">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>🔔 System Alerts</h1>
+                <p class="subtitle">Monitor important notifications and warnings</p>
+            </header>
+
+            <!-- Alert Summary -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">⚠️</span>
+                    </div>
+                    <div class="stat-value" id="warning-count">2</div>
+                    <div class="stat-label">Active Warnings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">🚨</span>
+                    </div>
+                    <div class="stat-value" id="critical-count">1</div>
+                    <div class="stat-label">Critical Alerts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">ℹ️</span>
+                    </div>
+                    <div class="stat-value" id="info-count">5</div>
+                    <div class="stat-label">Info Messages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">✅</span>
+                    </div>
+                    <div class="stat-value" id="resolved-count">12</div>
+                    <div class="stat-label">Resolved Today</div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="alert-tabs">
+                <button class="tab-btn active" onclick="filterAlerts('all')">All Alerts</button>
+                <button class="tab-btn" onclick="filterAlerts('critical')">Critical</button>
+                <button class="tab-btn" onclick="filterAlerts('warning')">Warnings</button>
+                <button class="tab-btn" onclick="filterAlerts('info')">Info</button>
+            </div>
+
+            <!-- Alerts List -->
+            <div class="alerts-container" id="alertsContainer">
+                <!-- Critical Alert -->
+                <div class="alert-item danger" data-type="critical">
+                    <div class="alert-icon">🚨</div>
+                    <div class="alert-content">
+                        <h4>Critical: High Air Pollution Detected</h4>
+                        <p>Air quality sensor (MQ-135) reading exceeds safe levels at 245 ppm</p>
+                        <span class="alert-time">2 minutes ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Resolve</button>
+                </div>
+
+                <!-- Warning Alert -->
+                <div class="alert-item warning" data-type="warning">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h4>Warning: Water Tank Nearly Full</h4>
+                        <p>Water tank level at 85%. Consider emptying soon to prevent overflow</p>
+                        <span class="alert-time">15 minutes ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Resolve</button>
+                </div>
+
+                <!-- Warning Alert -->
+                <div class="alert-item warning" data-type="warning">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h4>Warning: High PM2.5 Levels</h4>
+                        <p>Particulate matter (PM2.5) reading at 45 µg/m³. Air quality is poor</p>
+                        <span class="alert-time">1 hour ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Resolve</button>
+                </div>
+
+                <!-- Info Alert -->
+                <div class="alert-item info" data-type="info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Info: Optimal Conditions for Water Generation</h4>
+                        <p>Temperature and humidity levels are ideal for water extraction</p>
+                        <span class="alert-time">2 hours ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Dismiss</button>
+                </div>
+
+                <!-- Info Alert -->
+                <div class="alert-item info" data-type="info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Info: System Running Smoothly</h4>
+                        <p>All sensors are functioning normally. No issues detected</p>
+                        <span class="alert-time">3 hours ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Dismiss</button>
+                </div>
+
+                <!-- Info Alert -->
+                <div class="alert-item info" data-type="info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Info: Data Synced to Google Sheets</h4>
+                        <p>Latest sensor readings successfully uploaded to cloud storage</p>
+                        <span class="alert-time">4 hours ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Dismiss</button>
+                </div>
+
+                <!-- Info Alert -->
+                <div class="alert-item info" data-type="info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Info: Good Air Quality</h4>
+                        <p>Air quality index is in the healthy range. Keep up the good work!</p>
+                        <span class="alert-time">5 hours ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Dismiss</button>
+                </div>
+
+                <!-- Info Alert -->
+                <div class="alert-item info" data-type="info">
+                    <div class="alert-icon">ℹ️</div>
+                    <div class="alert-content">
+                        <h4>Info: Water Quality Excellent</h4>
+                        <p>TDS sensor shows water purity at optimal levels (150 ppm)</p>
+                        <span class="alert-time">6 hours ago</span>
+                    </div>
+                    <button class="alert-action" onclick="resolveAlert(this)">Dismiss</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const user = localStorage.getItem('krishishakti_user') || sessionStorage.getItem('krishishakti_user');
+        if (!user) {
+            window.location.href = '/login.html';
+        } else {
+            const userData = JSON.parse(user);
+            document.getElementById('user-name').textContent = userData.name || 'User';
+            document.getElementById('user-email').textContent = userData.email || '';
+            document.getElementById('user-initial').textContent = (userData.name || 'U')[0].toUpperCase();
+        }
+
+        function logout() {
+            localStorage.removeItem('krishishakti_user');
+            sessionStorage.removeItem('krishishakti_user');
+            window.location.href = '/login.html';
+        }
+
+        function filterAlerts(type) {
+            const alerts = document.querySelectorAll('.alert-item');
+            const tabs = document.querySelectorAll('.tab-btn');
+            
+            // Update active tab
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter alerts
+            alerts.forEach(alert => {
+                if (type === 'all') {
+                    alert.style.display = 'flex';
+                } else {
+                    const alertType = alert.getAttribute('data-type');
+                    alert.style.display = alertType === type ? 'flex' : 'none';
+                }
+            });
+        }
+
+        function resolveAlert(button) {
+            const alertItem = button.closest('.alert-item');
+            alertItem.style.opacity = '0.5';
+            alertItem.style.transform = 'translateX(20px)';
+            
+            setTimeout(() => {
+                alertItem.remove();
+                updateAlertCounts();
+            }, 300);
+        }
+
+        function updateAlertCounts() {
+            const critical = document.querySelectorAll('.alert-item.danger').length;
+            const warnings = document.querySelectorAll('.alert-item.warning').length;
+            const info = document.querySelectorAll('.alert-item.info').length;
+            
+            document.getElementById('critical-count').textContent = critical;
+            document.getElementById('warning-count').textContent = warnings;
+            document.getElementById('info-count').textContent = info;
+        }
+
+        // Real-time alert monitoring
+        setInterval(() => {
+            fetch('/api/sensors')
+                .then(r => r.json())
+                .then(data => {
+                    // Check for critical conditions
+                    if (data.mq135.value > 200) {
+                        console.log('High air pollution detected!');
+                    }
+                    if (data.fc28.value > 85) {
+                        console.log('Water tank nearly full!');
+                    }
+                    if (data.pms5003.pm25 > 35) {
+                        console.log('High PM2.5 levels!');
+                    }
+                });
+        }, 5000);
+    </script>
+</body>
+</html>

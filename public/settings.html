@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">KrishiShakti</span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search settings...">
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                <span class="icon">🔔</span>
+                <span class="badge">3</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">⚙️</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+                <div class="user-dropdown">
+                    <div class="user-info">
+                        <div class="user-name" id="user-name">User</div>
+                        <div class="user-email" id="user-email">user@example.com</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">👤 Profile</a>
+                    <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+                    <a href="analytics.html" class="dropdown-item">📊 Analytics</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="alerts.html" class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item active">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>⚙️ Settings</h1>
+                <p class="subtitle">Configure your KrishiShakti system</p>
+            </header>
+
+            <!-- Notifications Settings -->
+            <div class="settings-section">
+                <h3>🔔 Notifications</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Email Notifications</h4>
+                        <p>Receive alerts via email when critical events occur</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Push Notifications</h4>
+                        <p>Get instant push notifications on your device</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Alert Sound</h4>
+                        <p>Play sound when new alerts are received</p>
+                    </div>
+                    <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                </div>
+            </div>
+
+            <!-- Data Settings -->
+            <div class="settings-section">
+                <h3>💾 Data Management</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Auto Sync to Google Sheets</h4>
+                        <p>Automatically backup sensor data to Google Sheets</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Data Retention</h4>
+                        <p>Keep historical data for 90 days</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSwitch(this)"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Export Data</h4>
+                        <p>Download all sensor data as CSV file</p>
+                    </div>
+                    <button class="alert-action" onclick="exportAllData()">Download CSV</button>
+                </div>
+            </div>
+
+            <!-- Sensor Settings -->
+            <div class="settings-section">
+                <h3>🔬 Sensor Configuration</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Sampling Rate</h4>
+                        <p>How often sensors collect data (currently: 2 seconds)</p>
+                    </div>
+                    <select class="setting-select">
+                        <option value="1">1 second</option>
+                        <option value="2" selected>2 seconds</option>
+                        <option value="5">5 seconds</option>
+                        <option value="10">10 seconds</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Calibrate Sensors</h4>
+                        <p>Recalibrate all sensors for accurate readings</p>
+                    </div>
+                    <button class="alert-action" onclick="calibrateSensors()">Calibrate</button>
+                </div>
+            </div>
+
+            <!-- Alert Thresholds -->
+            <div class="settings-section">
+                <h3>⚠️ Alert Thresholds</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Air Quality Alert (MQ-135)</h4>
+                        <p>Trigger alert when air quality exceeds (ppm)</p>
+                    </div>
+                    <input type="number" class="setting-input" value="200" min="0" max="500">
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Water Tank Full Alert</h4>
+                        <p>Trigger alert when water level reaches (%)</p>
+                    </div>
+                    <input type="number" class="setting-input" value="85" min="0" max="100">
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>PM2.5 Alert Level</h4>
+                        <p>Trigger alert when PM2.5 exceeds (µg/m³)</p>
+                    </div>
+                    <input type="number" class="setting-input" value="35" min="0" max="100">
+                </div>
+            </div>
+
+            <!-- System Settings -->
+            <div class="settings-section">
+                <h3>🖥️ System</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Dark Mode</h4>
+                        <p>Switch to dark theme for better viewing at night</p>
+                    </div>
+                    <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Language</h4>
+                        <p>Choose your preferred language</p>
+                    </div>
+                    <select class="setting-select">
+                        <option value="en" selected>English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>System Information</h4>
+                        <p>View system details and diagnostics</p>
+                    </div>
+                    <button class="alert-action" onclick="showSystemInfo()">View Info</button>
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-save" onclick="saveSettings()">💾 Save All Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const user = localStorage.getItem('krishishakti_user') || sessionStorage.getItem('krishishakti_user');
+        if (!user) {
+            window.location.href = '/login.html';
+        } else {
+            const userData = JSON.parse(user);
+            document.getElementById('user-name').textContent = userData.name || 'User';
+            document.getElementById('user-email').textContent = userData.email || '';
+            document.getElementById('user-initial').textContent = (userData.name || 'U')[0].toUpperCase();
+        }
+
+        function logout() {
+            localStorage.removeItem('krishishakti_user');
+            sessionStorage.removeItem('krishishakti_user');
+            window.location.href = '/login.html';
+        }
+
+        function toggleSwitch(element) {
+            element.classList.toggle('active');
+        }
+
+        function exportAllData() {
+            fetch('/api/history')
+                .then(r => r.json())
+                .then(data => {
+                    const csv = convertToCSV(data);
+                    downloadCSV(csv, 'krishishakti-data.csv');
+                    showNotification('Data exported successfully!');
+                });
+        }
+
+        function convertToCSV(data) {
+            const headers = ['Timestamp', 'Air Quality (ppm)', 'Temperature (°C)', 'Humidity (%)', 'PM2.5', 'PM10', 'Water Level (%)', 'TDS (ppm)'];
+            const rows = data.map(row => [
+                row.timestamp,
+                row.mq135,
+                row.temperature,
+                row.humidity,
+                row.pm25,
+                row.pm10,
+                row.fc28,
+                row.tds
+            ]);
+            return [headers, ...rows].map(row => row.join(',')).join('\n');
+        }
+
+        function downloadCSV(csv, filename) {
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+        }
+
+        function calibrateSensors() {
+            showNotification('Sensor calibration started... This may take a few minutes.');
+        }
+
+        function showSystemInfo() {
+            alert('System Information:\n\nVersion: 1.0.0\nSensors: 5 active\nUptime: 24 hours\nArduino: Connected\nGoogle Sheets: Synced');
+        }
+
+        function saveSettings() {
+            showNotification('Settings saved successfully!');
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

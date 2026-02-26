@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+__pycache__/
+*.pyc
+.env
+.cache/
+.ollama/
+*.db
+*.sqlite3
+node_modules/
+.DS_Store
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+app.log
+simulator.log
+nohup.out
+
+# Data files (optional - uncomment if you don't want to upload data)
+# data/history.json
+# data/sensor_data_export.csv
+
+# Google Sheets Credentials (IMPORTANT - Keep private!)
+credentials.json
+*.json.key
+
+# OS
+.DS_Store
+Thumbs.db
+*.bak
+
+# Temporary files
+*.tmp
+*.temp
+
+# Documentation (optional)
+# *.md
+
+# Test files
+test_*.py

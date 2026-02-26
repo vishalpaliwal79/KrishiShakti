@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture AI - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="agriculture.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">KrishiShakti - Agriculture AI</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="location-info">
+                <span class="location-icon">📍</span>
+                <span id="location-text">Detecting location...</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+                <div class="user-info">
+                    <span id="welcome-user">User</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="agriculture.html" class="menu-item active">
+                <span class="menu-icon">🌱</span>
+                <span class="menu-text">Agriculture AI</span>
+            </a>
+            <a href="alerts.html" class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🌾 Smart Agriculture System</h1>
+                <p>AI-Powered Crop Monitoring & Disease Detection</p>
+            </div>
+
+        <!-- Farm Health Score -->
+        <div class="health-score-section">
+            <div class="health-card">
+                <h2>🎯 Live Farm Health Score</h2>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <svg width="200" height="200">
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="12"/>
+                            <circle id="health-progress" cx="100" cy="100" r="90" fill="none" stroke="#10b981" 
+                                    stroke-width="12" stroke-dasharray="565.48" stroke-dashoffset="141.37" 
+                                    transform="rotate(-90 100 100)" stroke-linecap="round"/>
+                        </svg>
+                        <div class="score-text">
+                            <span id="health-score">85</span>
+                            <span class="score-label">Health Score</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="health-factors">
+                    <div class="factor">
+                        <span>🌡️ Temperature</span>
+                        <span id="temp-factor" class="factor-value good">Good</span>
+                    </div>
+                    <div class="factor">
+                        <span>💧 Soil Moisture</span>
+                        <span id="moisture-factor" class="factor-value good">Optimal</span>
+                    </div>
+                    <div class="factor">
+                        <span>🌿 Air Quality</span>
+                        <span id="air-factor" class="factor-value good">Excellent</span>
+                    </div>
+                    <div class="factor">
+                        <span>💦 Water Quality</span>
+                        <span id="water-factor" class="factor-value good">Pure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Disease Detection -->
+        <div class="ai-section">
+            <div class="ai-card">
+                <h2>🔬 AI Disease Detection</h2>
+                
+                <!-- Simple Upload Button -->
+                <div class="simple-upload-section">
+                    <input type="file" id="crop-image" accept="image/*" style="display: none;">
+                    <button class="btn-upload-large" id="upload-btn">
+                        📸 Click Here to Upload Crop Image
+                    </button>
+                    <p class="upload-hint">Supported: JPG, PNG, GIF (Max 10MB)</p>
+                </div>
+                
+                <!-- Image Preview -->
+                <div id="image-preview" class="image-preview" style="display: none;">
+                    <img id="preview-img" src="" alt="Crop preview">
+                    <div class="preview-actions">
+                        <button class="btn-analyze" id="analyze-btn">🔍 Analyze with AI</button>
+                        <button class="btn-reset" id="reset-btn">🔄 Upload New Image</button>
+                    </div>
+                </div>
+                
+                <!-- Analysis Result -->
+                <div id="analysis-result" class="analysis-result" style="display: none;">
+                    <div class="result-header">
+                        <h3>Analysis Results</h3>
+                        <span id="confidence" class="confidence"></span>
+                    </div>
+                    <div class="disease-info">
+                        <div class="disease-status" id="disease-status">
+                            <span class="status-icon">✅</span>
+                            <span id="disease-name">Healthy Crop</span>
+                        </div>
+                        <p id="disease-description"></p>
+                    </div>
+                    <div class="recommendations" id="recommendations"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Advisory System -->
+        <div class="advisory-section">
+            <div class="advisory-card">
+                <h2>💡 Smart Advisory System</h2>
+                <div class="advisory-tabs">
+                    <button class="tab-btn active" onclick="showTab('irrigation')">💧 Irrigation</button>
+                    <button class="tab-btn" onclick="showTab('fertilizer')">🌿 Fertilizer</button>
+                    <button class="tab-btn" onclick="showTab('pest')">🐛 Pest Control</button>
+                    <button class="tab-btn" onclick="showTab('weather')">🌤️ Weather</button>
+                </div>
+                
+                <div id="irrigation-tab" class="tab-content active">
+                    <div class="recommendation-card">
+                        <h3>💧 AI-Powered Irrigation Recommendation</h3>
+                        <div class="recommendation-status" id="irrigation-status">
+                            <span class="status-badge optimal">Optimal</span>
+                            <span class="ai-badge">🤖 AI Confidence: <span id="irrigation-confidence">92%</span></span>
+                        </div>
+                        <p id="irrigation-advice">Current soil moisture is optimal. Next irrigation recommended in 2 days.</p>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span>Current Moisture</span>
+                                <strong id="current-moisture">65%</strong>
+                            </div>
+                            <div class="metric">
+                                <span>Water Needed</span>
+                                <strong id="water-amount">0 L/m²</strong>
+                            </div>
+                            <div class="metric">
+                                <span>ET Rate</span>
+                                <strong id="et-rate">3.5 mm/day</strong>
+                            </div>
+                            <div class="metric">
+                                <span>Next Irrigation</span>
+                                <strong id="next-irrigation">2 days</strong>
+                            </div>
+                        </div>
+                        <div class="ai-insight">
+                            <strong>🧠 AI Analysis:</strong>
+                            <p id="irrigation-insight">Analyzing environmental conditions and calculating optimal irrigation schedule...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fertilizer-tab" class="tab-content">
+                    <div class="recommendation-card">
+                        <h3>🌿 AI-Powered Fertilizer Recommendation</h3>
+                        <div class="recommendation-status">
+                            <span class="status-badge good" id="fertilizer-status-badge">Good</span>
+                            <span class="ai-badge">🤖 AI Confidence: <span id="fertilizer-confidence">88%</span></span>
+                        </div>
+                        <p id="fertilizer-advice">Soil nutrients are balanced. Apply NPK 10-10-10 in 1 week.</p>
+                        <div class="fertilizer-details">
+                            <div class="detail-item">
+                                <strong>NPK Ratio:</strong>
+                                <span id="npk-ratio">10-10-10</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Application Rate:</strong>
+                                <span id="application-rate">50-100 kg/hectare</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Timing:</strong>
+                                <span id="fertilizer-timing">1 week</span>
+                            </div>
+                        </div>
+                        <div class="nutrient-levels">
+                            <div class="nutrient">
+                                <span>Nitrogen (N)</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="nitrogen-bar" style="width: 75%"></div>
+                                </div>
+                                <span id="nitrogen-value">75%</span>
+                            </div>
+                            <div class="nutrient">
+                                <span>Phosphorus (P)</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="phosphorus-bar" style="width: 68%"></div>
+                                </div>
+                                <span id="phosphorus-value">68%</span>
+                            </div>
+                            <div class="nutrient">
+                                <span>Potassium (K)</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="potassium-bar" style="width: 82%"></div>
+                                </div>
+                                <span id="potassium-value">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pest-tab" class="tab-content">
+                    <div class="recommendation-card">
+                        <h3>🐛 AI-Powered Pest Control Advisory</h3>
+                        <div class="recommendation-status">
+                            <span class="status-badge safe" id="pest-status-badge">Safe</span>
+                            <span class="ai-badge">🤖 AI Confidence: <span id="pest-confidence">85%</span></span>
+                        </div>
+                        <p id="pest-advice">No pest threats detected. Continue regular monitoring.</p>
+                        <div class="pest-details">
+                            <div class="detail-item">
+                                <strong>Risk Score:</strong>
+                                <span id="pest-risk-score">15/100</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Inspection Frequency:</strong>
+                                <span id="inspection-frequency">Every 2-3 days</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Recommended Action:</strong>
+                                <span id="pest-action">Routine monitoring</span>
+                            </div>
+                        </div>
+                        <div class="pest-alerts" id="pest-alerts">
+                            <div class="alert-item safe">
+                                <span>🦗 Grasshoppers</span>
+                                <span class="risk-level">Low Risk</span>
+                            </div>
+                            <div class="alert-item safe">
+                                <span>🐛 Caterpillars</span>
+                                <span class="risk-level">Low Risk</span>
+                            </div>
+                            <div class="alert-item safe">
+                                <span>🦟 Aphids</span>
+                                <span class="risk-level">Low Risk</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="weather-tab" class="tab-content">
+                    <div class="recommendation-card">
+                        <h3>🌤️ AI Weather-Based Advisory</h3>
+                        <div class="recommendation-status">
+                            <span class="ai-badge">🤖 AI Confidence: <span id="weather-confidence">78%</span></span>
+                        </div>
+                        <div class="weather-forecast" id="weather-forecast">
+                            <div class="forecast-item">
+                                <span>Today</span>
+                                <span class="weather-icon">☀️</span>
+                                <span>28°C</span>
+                                <span class="rain-prob">20% rain</span>
+                            </div>
+                            <div class="forecast-item">
+                                <span>Tomorrow</span>
+                                <span class="weather-icon">⛅</span>
+                                <span>26°C</span>
+                                <span class="rain-prob">30% rain</span>
+                            </div>
+                            <div class="forecast-item">
+                                <span>Day 3</span>
+                                <span class="weather-icon">🌧️</span>
+                                <span>24°C</span>
+                                <span class="rain-prob">70% rain</span>
+                            </div>
+                        </div>
+                        <p id="weather-advice">Rain expected in 3 days. Delay irrigation and fertilizer application.</p>
+                        <div class="weather-actions">
+                            <h4>📋 Recommended Actions:</h4>
+                            <ul id="weather-actions-list">
+                                <li>Follow standard irrigation schedule</li>
+                                <li>Monitor weather updates</li>
+                                <li>Be ready to adjust plans</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights Section -->
+        <div class="insights-section">
+            <div class="insights-card">
+                <h2>🧠 AI-Powered Insights</h2>
+                <div class="insights-list" id="ai-insights">
+                    <div class="insight-item info">
+                        <span class="insight-icon">💡</span>
+                        <div class="insight-content">
+                            <strong>Loading AI Analysis...</strong>
+                            <p>Analyzing sensor data and environmental conditions...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-section">
+            <div class="activity-card">
+                <h2>📋 Recent Activity</h2>
+                <div class="activity-list" id="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-icon">🔬</span>
+                        <div class="activity-details">
+                            <strong>Disease Analysis Completed</strong>
+                            <span>Healthy crop detected - 2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💧</span>
+                        <div class="activity-details">
+                            <strong>Irrigation Scheduled</strong>
+                            <span>Next watering in 2 days - 5 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🌿</span>
+                        <div class="activity-details">
+                            <strong>Fertilizer Applied</strong>
+                            <span>NPK 10-10-10 applied - 1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="agriculture.js"></script>
+</body>
+</html>

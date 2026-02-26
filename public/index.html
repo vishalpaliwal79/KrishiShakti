@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiShakti - Smart Agriculture & IoT Monitoring</title>
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌾</span>
+                <span class="logo-text">KrishiShakti</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#sensors">Sensors</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Get Started</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🎓 IIT Hackathon Project 2026</div>
+            <h1 class="hero-title">
+                Clean Air & Pure Water<br>
+                <span class="gradient-text">From Atmosphere</span>
+            </h1>
+            <p class="hero-subtitle">
+                Revolutionary IoT-powered system that purifies air and generates water simultaneously.
+                Monitor everything in real-time with advanced sensor technology.
+            </p>
+            <div class="hero-buttons">
+                <a href="signup.html" class="btn-hero-primary">Start Monitoring</a>
+                <a href="#features" class="btn-hero-secondary">Learn More →</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">IoT Sensors</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Real-time</div>
+                    <div class="stat-label">Monitoring</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Cloud Access</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <div class="card-icon">💨</div>
+                <div class="card-title">Air Quality</div>
+                <div class="card-value">Good</div>
+            </div>
+            <div class="floating-card card-2">
+                <div class="card-icon">💧</div>
+                <div class="card-title">Water Level</div>
+                <div class="card-value">75%</div>
+            </div>
+            <div class="floating-card card-3">
+                <div class="card-icon">🌡️</div>
+                <div class="card-title">Temperature</div>
+                <div class="card-value">25°C</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need to monitor and optimize your environmental system</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-Time Dashboard</h3>
+                    <p>Monitor all sensors live with beautiful visualizations and instant updates via WebSocket</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Storage</h3>
+                    <p>Automatic data backup to Google Sheets with historical tracking and analytics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Smart Alerts</h3>
+                    <p>Get notified when air quality drops or water tank is full with color-coded indicators</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Responsive</h3>
+                    <p>Access your dashboard from any device - desktop, tablet, or smartphone</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Arduino Powered</h3>
+                    <p>Built on Arduino Uno with professional-grade sensors for accurate readings</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Sustainable solution for clean air and water generation from atmosphere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sensors Section -->
+    <section id="sensors" class="sensors">
+        <div class="container">
+            <div class="section-header">
+                <h2>Advanced Sensor Array</h2>
+                <p>5 professional-grade sensors working together</p>
+            </div>
+            <div class="sensors-grid">
+                <div class="sensor-item">
+                    <div class="sensor-icon-large">💨</div>
+                    <h3>MQ-135</h3>
+                    <p class="sensor-type">Air Quality Sensor</p>
+                    <p>Detects harmful gases (CO2, NH3, NOx) in real-time</p>
+                </div>
+                <div class="sensor-item">
+                    <div class="sensor-icon-large">🌫️</div>
+                    <h3>PMS5003</h3>
+                    <p class="sensor-type">Particulate Matter</p>
+                    <p>Measures PM2.5 and PM10 dust particles</p>
+                </div>
+                <div class="sensor-item">
+                    <div class="sensor-icon-large">🌡️</div>
+                    <h3>DHT22</h3>
+                    <p class="sensor-type">Temperature & Humidity</p>
+                    <p>Monitors environmental conditions</p>
+                </div>
+                <div class="sensor-item">
+                    <div class="sensor-icon-large">💧</div>
+                    <h3>FC-28</h3>
+                    <p class="sensor-type">Water Tank Level</p>
+                    <p>Tracks collected water volume</p>
+                </div>
+                <div class="sensor-item">
+                    <div class="sensor-icon-large">🚰</div>
+                    <h3>TDS Sensor</h3>
+                    <p class="sensor-type">Water Quality</p>
+                    <p>Ensures water purity and safety</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About This Project</h2>
+                    <p>KrishiShakti is an innovative IoT solution developed for the IIT Hackathon 2026. Our system addresses critical agricultural challenges through smart monitoring and AI-powered insights.</p>
+                    <ul>
+                        <li>🌍 Air pollution through advanced filtration</li>
+                        <li>💧 Water scarcity via atmospheric water generation</li>
+                        <li>📊 Real-time monitoring with cloud integration</li>
+                        <li>🔬 Arduino-based hardware with professional sensors</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Arduino Uno</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">WebSocket</span>
+                        <span class="tech-badge">Google Sheets API</span>
+                        <span class="tech-badge">IoT</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="stats-box">
+                        <div class="stat-item">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-info">
+                                <div class="stat-num">Real-time</div>
+                                <div class="stat-desc">Data Updates</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-info">
+                                <div class="stat-num">99.9%</div>
+                                <div class="stat-desc">Accuracy</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🌐</div>
+                            <div class="stat-info">
+                                <div class="stat-num">Cloud</div>
+                                <div class="stat-desc">Connected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Monitoring?</h2>
+            <p>Join KrishiShakti and experience the future of smart agriculture</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="btn-cta-primary">Create Free Account</a>
+                <a href="login.html" class="btn-cta-secondary">Sign In</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">🌍</span>
+                        <span class="logo-text">KrishiShakti</span>
+                    </div>
+                    <p>Smart agriculture through IoT and AI</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#sensors">Sensors</a>
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="#">Documentation</a>
+                        <a href="#">API</a>
+                        <a href="#">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#about">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KrishiShakti. IIT Hackathon Project. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="landing.js"></script>
+</body>
+</html>

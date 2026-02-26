@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">KrishiShakti</span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search sensors, data...">
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="alerts.html" class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item active">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>📜 Data History</h1>
+                <p class="subtitle">View all historical sensor readings</p>
+            </header>
+
+            <div class="filter-bar">
+                <select id="sensorFilter">
+                    <option value="all">All Sensors</option>
+                    <option value="mq135">Air Quality</option>
+                    <option value="pm">Particulate Matter</option>
+                    <option value="temp">Temperature</option>
+                    <option value="water">Water Level</option>
+                </select>
+                <input type="date" id="dateFilter">
+                <button onclick="applyFilter()">Apply Filter</button>
+                <button onclick="exportData()">📥 Export CSV</button>
+            </div>
+
+            <div class="data-table">
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Air Quality</th>
+                            <th>Temp</th>
+                            <th>Humidity</th>
+                            <th>PM2.5</th>
+                            <th>PM10</th>
+                            <th>Water Level</th>
+                            <th>TDS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                        <tr><td colspan="8" style="text-align:center;padding:20px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const user = localStorage.getItem('krishishakti_user') || sessionStorage.getItem('krishishakti_user');
+        if (!user) window.location.href = '/login.html';
+        else {
+            const userData = JSON.parse(user);
+            document.getElementById('user-initial').textContent = (userData.name || 'U')[0].toUpperCase();
+        }
+
+        fetch('/api/history')
+            .then(r => r.json())
+            .then(data => {
+                const tbody = document.getElementById('historyBody');
+                tbody.innerHTML = '';
+                data.reverse().forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${new Date(row.timestamp).toLocaleString()}</td>
+                        <td>${row.mq135.toFixed(1)} ppm</td>
+                        <td>${row.temperature.toFixed(1)}°C</td>
+                        <td>${row.humidity.toFixed(1)}%</td>
+                        <td>${row.pm25.toFixed(1)}</td>
+                        <td>${row.pm10.toFixed(1)}</td>
+                        <td>${row.fc28.toFixed(1)}%</td>
+                        <td>${row.tds.toFixed(0)} ppm</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+
+        function applyFilter() {
+            alert('Filter functionality coming soon!');
+        }
+
+        function exportData() {
+            alert('Export functionality coming soon!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - KrishiShakti</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-left">
+            <div class="logo-section">
+                <h1>🌾 KrishiShakti</h1>
+                <p>Smart Agriculture & IoT Monitoring System</p>
+            </div>
+            <div class="features">
+                <div class="feature-item">
+                    <span class="icon">🎓</span>
+                    <div>
+                        <h3>IIT Hackathon Project</h3>
+                        <p>Innovative environmental solution</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🌱</span>
+                    <div>
+                        <h3>Sustainable Technology</h3>
+                        <p>Clean air and water from atmosphere</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🔬</span>
+                    <div>
+                        <h3>IoT Powered</h3>
+                        <p>Arduino + Cloud integration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="auth-right">
+            <div class="auth-box">
+                <h2>Create Account</h2>
+                <p class="subtitle">Join KrishiShakti today</p>
+                
+                <form id="signupForm" onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Min. 8 characters" required minlength="8">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+                    </div>
+                    
+                    <label class="checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <span>I agree to the Terms of Service and Privacy Policy</span>
+                    </label>
+                    
+                    <button type="submit" class="btn-primary">Create Account</button>
+                    
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <button type="button" class="btn-demo" onclick="demoLogin()">
+                        🚀 Try Demo Account
+                    </button>
+                </form>
+                
+                <p class="auth-footer">
+                    Already have an account? <a href="login.html">Sign in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="auth.js"></script>
+</body>
+</html>

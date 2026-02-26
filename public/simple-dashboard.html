@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiShakti Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .update-time {
+            color: #666;
+            font-size: 1em;
+        }
+
+        .sensors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .sensor-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .sensor-name {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .sensor-value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .sensor-unit {
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .status-good {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-critical {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .refresh-btn {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            padding: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .sensors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sensor-value {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌾 KrishiShakti Dashboard</h1>
+            <p class="update-time" id="update-time">Loading...</p>
+            <button class="refresh-btn" onclick="loadData()" style="margin-top: 15px;">🔄 Refresh Now</button>
+        </div>
+
+        <div id="sensors-container" class="sensors-grid">
+            <div class="loading">Loading sensor data...</div>
+        </div>
+    </div>
+
+    <script>
+        function getStatus(value, sensor) {
+            if (sensor === 'mq135') {
+                if (value < 50) return { text: 'Excellent', class: 'status-good' };
+                if (value < 100) return { text: 'Good', class: 'status-good' };
+                if (value < 200) return { text: 'Moderate', class: 'status-warning' };
+                return { text: 'Poor', class: 'status-critical' };
+            }
+            
+            if (sensor === 'temperature') {
+                if (value >= 20 && value <= 30) return { text: 'Optimal', class: 'status-good' };
+                if (value > 35) return { text: 'Too Hot', class: 'status-critical' };
+                if (value < 15) return { text: 'Too Cold', class: 'status-critical' };
+                return { text: 'Moderate', class: 'status-warning' };
+            }
+            
+            if (sensor === 'humidity') {
+                if (value >= 50 && value <= 70) return { text: 'Good', class: 'status-good' };
+                if (value < 40) return { text: 'Low', class: 'status-warning' };
+                if (value > 80) return { text: 'High', class: 'status-warning' };
+                return { text: 'Moderate', class: 'status-good' };
+            }
+            
+            if (sensor === 'pm') {
+                if (value < 12) return { text: 'Excellent', class: 'status-good' };
+                if (value < 35) return { text: 'Good', class: 'status-good' };
+                if (value < 55) return { text: 'Moderate', class: 'status-warning' };
+                return { text: 'Poor', class: 'status-critical' };
+            }
+            
+            if (sensor === 'water') {
+                if (value < 20) return { text: 'CRITICAL - Water NOW!', class: 'status-critical' };
+                if (value < 40) return { text: 'Low - Water Soon', class: 'status-warning' };
+                if (value >= 50 && value <= 70) return { text: 'Perfect', class: 'status-good' };
+                if (value > 80) return { text: 'Too High', class: 'status-warning' };
+                return { text: 'Good', class: 'status-good' };
+            }
+            
+            if (sensor === 'tds') {
+                if (value < 300) return { text: 'Pure', class: 'status-good' };
+                if (value < 600) return { text: 'Good', class: 'status-good' };
+                if (value < 900) return { text: 'Moderate', class: 'status-warning' };
+                return { text: 'High', class: 'status-critical' };
+            }
+            
+            return { text: 'Unknown', class: 'status-good' };
+        }
+
+        async function loadData() {
+            try {
+                console.log('Fetching data from /api/sensors...');
+                const response = await fetch('/api/sensors');
+                const data = await response.json();
+                
+                console.log('Received data:', data);
+                
+                if (!data || !data.mq135) {
+                    throw new Error('Invalid data format');
+                }
+                
+                const mq135Status = getStatus(data.mq135.value, 'mq135');
+                const tempStatus = getStatus(data.dht22.temperature, 'temperature');
+                const humidityStatus = getStatus(data.dht22.humidity, 'humidity');
+                const pm25Status = getStatus(data.pms5003.pm25, 'pm');
+                const pm10Status = getStatus(data.pms5003.pm10, 'pm');
+                const waterStatus = getStatus(data.fc28.value, 'water');
+                const tdsStatus = getStatus(data.tds.value, 'tds');
+                
+                const html = `
+                    <div class="sensor-card">
+                        <div class="sensor-name">🌿 MQ-135 Air Quality</div>
+                        <div class="sensor-value">${data.mq135.value.toFixed(1)}</div>
+                        <div class="sensor-unit">ppm</div>
+                        <div class="status ${mq135Status.class}">${mq135Status.text}</div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-name">🌡️ Temperature (DHT22)</div>
+                        <div class="sensor-value">${data.dht22.temperature.toFixed(1)}</div>
+                        <div class="sensor-unit">°C</div>
+                        <div class="status ${tempStatus.class}">${tempStatus.text}</div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-name">💧 Humidity (DHT22)</div>
+                        <div class="sensor-value">${data.dht22.humidity.toFixed(1)}</div>
+                        <div class="sensor-unit">%</div>
+                        <div class="status ${humidityStatus.class}">${humidityStatus.text}</div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-name">💨 PM2.5 (PMS5003)</div>
+                        <div class="sensor-value">${data.pms5003.pm25.toFixed(1)}</div>
+                        <div class="sensor-unit">µg/m³</div>
+                        <div class="status ${pm25Status.class}">${pm25Status.text}</div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-name">💨 PM10 (PMS5003)</div>
+                        <div class="sensor-value">${data.pms5003.pm10.toFixed(1)}</div>
+                        <div class="sensor-unit">µg/m³</div>
+                        <div class="status ${pm10Status.class}">${pm10Status.text}</div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-name">💦 Water Level (FC-28)</div>
+                        <div class="sensor-value">${data.fc28.value.toFixed(1)}</div>
+                        <div class="sensor-unit">%</div>
+                        <div class="status ${waterStatus.class}">${waterStatus.text}</div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-name">🚰 Water Quality (TDS)</div>
+                        <div class="sensor-value">${data.tds.value.toFixed(0)}</div>
+                        <div class="sensor-unit">ppm</div>
+                        <div class="status ${tdsStatus.class}">${tdsStatus.text}</div>
+                    </div>
+                `;
+                
+                document.getElementById('sensors-container').innerHTML = html;
+                document.getElementById('update-time').textContent = 
+                    'Last updated: ' + new Date().toLocaleTimeString() + ' • Auto-refresh every 8 seconds';
+                    
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('sensors-container').innerHTML = `
+                    <div class="sensor-card" style="grid-column: 1 / -1;">
+                        <div class="sensor-name" style="color: red;">❌ Error Loading Data</div>
+                        <p style="color: #666; margin-top: 10px;">${error.message}</p>
+                        <p style="color: #666; margin-top: 10px;">Make sure Flask server and simulator are running.</p>
+                        <button class="refresh-btn" onclick="loadData()" style="margin-top: 15px;">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Load data immediately
+        loadData();
+        
+        // Auto-refresh every 8 seconds
+        setInterval(loadData, 8000);
+    </script>
+</body>
+</html>

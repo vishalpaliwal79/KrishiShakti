@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">KrishiShakti</span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search sensors, data...">
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-item">
+                <span class="icon">🔔</span>
+                <span class="badge">3</span>
+            </div>
+            <div class="nav-item">
+                <span class="icon">⚙️</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+                <div class="user-dropdown">
+                    <div class="user-info">
+                        <div class="user-name" id="user-name">User</div>
+                        <div class="user-email" id="user-email">user@example.com</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">👤 Profile</a>
+                    <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+                    <a href="analytics.html" class="dropdown-item">📊 Analytics</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" onclick="logout()">🚪 Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item active">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="alerts.html" class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>📈 Analytics & Insights</h1>
+                <p class="subtitle">Detailed analysis of your environmental data</p>
+                <div class="location-info-small">
+                    <span class="location-icon">📍</span>
+                    <span id="location-text-analytics">Loading location...</span>
+                </div>
+            </header>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">💨</span>
+                        <span class="stat-trend up">↑ 12%</span>
+                    </div>
+                    <div class="stat-value" id="avg-air-quality">--</div>
+                    <div class="stat-label">Avg Air Quality</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">💧</span>
+                        <span class="stat-trend up">↑ 8%</span>
+                    </div>
+                    <div class="stat-value" id="water-collected">--</div>
+                    <div class="stat-label">Water Collected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">🌡️</span>
+                        <span class="stat-trend">→ 0%</span>
+                    </div>
+                    <div class="stat-value" id="avg-temp">--</div>
+                    <div class="stat-label">Avg Temperature</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-icon">📊</span>
+                        <span class="stat-trend up">↑ 100%</span>
+                    </div>
+                    <div class="stat-value" id="total-readings">--</div>
+                    <div class="stat-label">Total Readings</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-container">
+                <div class="chart-box">
+                    <h3>Air Quality Trend (Last 24 Hours)</h3>
+                    <canvas id="airQualityChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Water Tank Level Over Time</h3>
+                    <canvas id="waterLevelChart"></canvas>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box">
+                    <h3>Temperature & Humidity</h3>
+                    <canvas id="tempHumidityChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Sensor Distribution</h3>
+                    <canvas id="sensorDistChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const user = localStorage.getItem('krishishakti_user') || sessionStorage.getItem('krishishakti_user');
+        if (!user) {
+            window.location.href = '/login.html';
+        } else {
+            const userData = JSON.parse(user);
+            document.getElementById('user-name').textContent = userData.name || 'User';
+            document.getElementById('user-email').textContent = userData.email || '';
+            document.getElementById('user-initial').textContent = (userData.name || 'U')[0].toUpperCase();
+        }
+
+        function logout() {
+            localStorage.removeItem('krishishakti_user');
+            sessionStorage.removeItem('krishishakti_user');
+            window.location.href = '/login.html';
+        }
+
+        // Load location
+        const cachedLocation = localStorage.getItem('user_location');
+        if (cachedLocation) {
+            const location = JSON.parse(cachedLocation);
+            document.getElementById('location-text-analytics').textContent = `${location.city}, ${location.country}`;
+        } else {
+            document.getElementById('location-text-analytics').textContent = 'Location not available';
+        }
+
+        // Fetch and display analytics
+        fetch('/api/history')
+            .then(r => r.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    // Calculate stats
+                    const avgAirQuality = (data.reduce((sum, d) => sum + d.mq135, 0) / data.length).toFixed(1);
+                    const avgWaterLevel = (data.reduce((sum, d) => sum + d.fc28, 0) / data.length).toFixed(1);
+                    const avgTemp = (data.reduce((sum, d) => sum + d.temperature, 0) / data.length).toFixed(1);
+                    
+                    document.getElementById('avg-air-quality').textContent = avgAirQuality + ' ppm';
+                    document.getElementById('water-collected').textContent = avgWaterLevel + '%';
+                    document.getElementById('avg-temp').textContent = avgTemp + '°C';
+                    document.getElementById('total-readings').textContent = data.length;
+
+                    // Create charts
+                    createAirQualityChart(data);
+                    createWaterLevelChart(data);
+                    createTempHumidityChart(data);
+                    createSensorDistChart(data);
+                }
+            });
+
+        function createAirQualityChart(data) {
+            const ctx = document.getElementById('airQualityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.slice(-20).map((d, i) => i + 1),
+                    datasets: [{
+                        label: 'Air Quality (ppm)',
+                        data: data.slice(-20).map(d => d.mq135),
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function createWaterLevelChart(data) {
+            const ctx = document.getElementById('waterLevelChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.slice(-20).map((d, i) => i + 1),
+                    datasets: [{
+                        label: 'Water Level (%)',
+                        data: data.slice(-20).map(d => d.fc28),
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function createTempHumidityChart(data) {
+            const ctx = document.getElementById('tempHumidityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.slice(-20).map((d, i) => i + 1),
+                    datasets: [{
+                        label: 'Temperature (°C)',
+                        data: data.slice(-20).map(d => d.temperature),
+                        borderColor: '#f59e0b',
+                        yAxisID: 'y'
+                    }, {
+                        label: 'Humidity (%)',
+                        data: data.slice(-20).map(d => d.humidity),
+                        borderColor: '#3b82f6',
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { position: 'left' },
+                        y1: { position: 'right', grid: { drawOnChartArea: false } }
+                    }
+                }
+            });
+        }
+
+        function createSensorDistChart(data) {
+            const latest = data[data.length - 1];
+            const ctx = document.getElementById('sensorDistChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Air Quality', 'PM2.5', 'PM10', 'Water Level', 'TDS'],
+                    datasets: [{
+                        data: [latest.mq135, latest.pm25, latest.pm10, latest.fc28, latest.tds],
+                        backgroundColor: ['#667eea', '#f59e0b', '#10b981', '#3b82f6', '#ef4444']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+    </script>
+</body>
+</html>

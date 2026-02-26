@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Test - KrishiShakti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .sensor-box {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .sensor-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .sensor-value {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+        .refresh-btn:hover {
+            background: #5568d3;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌾 KrishiShakti Sensor Test</h1>
+    <button class="refresh-btn" onclick="loadData()">🔄 Refresh Data</button>
+    
+    <div id="sensors-container">
+        <p>Loading...</p>
+    </div>
+    
+    <div class="timestamp" id="timestamp"></div>
+
+    <script>
+        async function loadData() {
+            try {
+                const response = await fetch('/api/sensors');
+                const data = await response.json();
+                
+                console.log('Received data:', data);
+                
+                let html = '';
+                
+                // MQ-135
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">🌿 MQ-135 Gas Sensor (Air Quality)</div>
+                        <div class="sensor-value">${data.mq135.value.toFixed(2)} ppm</div>
+                    </div>
+                `;
+                
+                // Temperature
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">🌡️ DHT22 Temperature</div>
+                        <div class="sensor-value">${data.dht22.temperature.toFixed(2)} °C</div>
+                    </div>
+                `;
+                
+                // Humidity
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">💧 DHT22 Humidity</div>
+                        <div class="sensor-value">${data.dht22.humidity.toFixed(2)} %</div>
+                    </div>
+                `;
+                
+                // PM2.5
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">💨 PMS5003 PM2.5</div>
+                        <div class="sensor-value">${data.pms5003.pm25.toFixed(2)} µg/m³</div>
+                    </div>
+                `;
+                
+                // PM10
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">💨 PMS5003 PM10</div>
+                        <div class="sensor-value">${data.pms5003.pm10.toFixed(2)} µg/m³</div>
+                    </div>
+                `;
+                
+                // Water Level
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">💦 FC-28 Water Level</div>
+                        <div class="sensor-value">${data.fc28.value.toFixed(2)} %</div>
+                    </div>
+                `;
+                
+                // TDS
+                html += `
+                    <div class="sensor-box">
+                        <div class="sensor-name">🚰 TDS Water Quality</div>
+                        <div class="sensor-value">${data.tds.value.toFixed(0)} ppm</div>
+                    </div>
+                `;
+                
+                document.getElementById('sensors-container').innerHTML = html;
+                document.getElementById('timestamp').textContent = 
+                    'Last updated: ' + new Date(data.timestamp).toLocaleString();
+                    
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('sensors-container').innerHTML = 
+                    '<p style="color: red;">Error loading data: ' + error.message + '</p>';
+            }
+        }
+        
+        // Load data on page load
+        loadData();
+        
+        // Auto-refresh every 8 seconds
+        setInterval(loadData, 8000);
+    </script>
+</body>
+</html>

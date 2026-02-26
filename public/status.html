@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Status</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .status-box {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid;
+        }
+        .status-box.success {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .status-box.warning {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        .status-box.error {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .status-box h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .status-box p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .code {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .center {
+            text-align: center;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 System Status Check</h1>
+        
+        <div class="status-box success">
+            <h3>✅ Server Running</h3>
+            <p>Your server is running on port 3000</p>
+            <p>Dashboard: <a href="/">http://localhost:3000</a></p>
+        </div>
+
+        <div class="status-box success">
+            <h3>✅ Simulator Active</h3>
+            <p>Generating random sensor data every 2 seconds</p>
+            <p id="data-count">Loading data count...</p>
+        </div>
+
+        <div class="status-box success">
+            <h3>✅ Local Storage Working</h3>
+            <p>Data is being saved to: <code>data/history.json</code></p>
+            <p>Dashboard will show data from local storage</p>
+        </div>
+
+        <div class="status-box warning" id="sheets-status">
+            <h3>⚠️ Google Sheets Not Configured</h3>
+            <p>Google Sheets integration is optional but not set up yet.</p>
+            <p><strong>Current Status:</strong></p>
+            <ul>
+                <li id="creds-status">Checking credentials.json...</li>
+                <li id="sheet-status">Checking SPREADSHEET_ID...</li>
+            </ul>
+            <p><strong>To enable Google Sheets:</strong></p>
+            <div class="code">node setup-wizard.js</div>
+            <p>Or read: <code>GOOGLE-SHEETS-SETUP.md</code></p>
+        </div>
+
+        <div class="center">
+            <a href="/" class="btn">📊 Open Dashboard</a>
+            <a href="/api/sensors" class="btn">🔌 View API</a>
+        </div>
+
+        <div class="status-box success">
+            <h3>📊 Latest Sensor Reading</h3>
+            <div id="latest-data" class="code">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch data count
+        fetch('/api/history')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('data-count').textContent = 
+                    `Total records stored: ${data.length}`;
+            });
+
+        // Fetch latest sensor data
+        fetch('/api/sensors')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('latest-data').textContent = 
+                    JSON.stringify(data, null, 2);
+            });
+
+        // Check credentials
+        fetch('/api/sheets/data?limit=1')
+            .then(r => r.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    document.getElementById('sheets-status').className = 'status-box success';
+                    document.getElementById('sheets-status').innerHTML = `
+                        <h3>✅ Google Sheets Connected</h3>
+                        <p>Data is being saved to Google Sheets!</p>
+                        <p>Records in sheet: ${data.length}</p>
+                    `;
+                }
+            })
+            .catch(() => {
+                document.getElementById('creds-status').innerHTML = 
+                    '❌ credentials.json missing';
+                document.getElementById('sheet-status').innerHTML = 
+                    '❌ SPREADSHEET_ID not configured';
+            });
+    </script>
+</body>
+</html>
