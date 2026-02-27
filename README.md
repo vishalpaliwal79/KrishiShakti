@@ -197,3 +197,4 @@ For support, email your-email@example.com or open an issue on GitHub.
 # krishishakti
 # KrishiShakti
 # KrishiShakti
+# KrishiShakti_local
