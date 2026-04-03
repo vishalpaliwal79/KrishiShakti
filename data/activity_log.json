@@ -1,0 +1,502 @@
+[
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:27:32.538098"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:27:40.542231"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:27:48.552195"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:27:56.555307"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:04.558526"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:12.561556"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:20.564476"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:28.572111"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:36.579265"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:44.583191"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:28:52.586250"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:00.590129"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:08.593341"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:16.596684"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:24.599806"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:32.603515"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:40.606705"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:48.611579"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:29:56.617480"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:30:04.622281"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:30:12.627796"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:30:20.632021"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:30:28.635485"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:30:36.640025"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-03-28T23:33:03.368306"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:33:03.373180"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:33:11.377215"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:33:19.380240"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:33:27.384723"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:33:35.388869"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-03-28T23:33:58.441445"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:33:58.446765"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:34:06.451719"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump ON \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-28T23:34:15.274833"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-03-28T23:38:20.135550"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:38:20.143634"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-03-28T23:46:54.236548"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-28T23:46:54.241250"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-03-29T00:01:59.745521"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T00:01:59.749431"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump OFF \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:08:39.215556"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump ON \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:09:04.432725"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump OFF \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:09:37.791353"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump ON \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:10:02.968334"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump OFF \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:10:44.200491"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T00:35:22.217076"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump ON \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:36:19.864973"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump OFF \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:36:53.149445"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump ON \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:46:04.597614"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned pump OFF \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T00:47:58.755492"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:19:34.483407"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:19:42.487235"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:19:50.490722"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:19:58.493185"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:06.496677"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:14.500208"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:22.503086"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:30.505961"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:38.509964"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:46.514442"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:20:54.517364"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:02.520704"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:10.523887"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:18.527741"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:26.558705"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:34.695198"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:42.829176"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:50.912474"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:21:59.036643"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:07.147886"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:15.218184"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:23.264464"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:31.307712"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:39.386143"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:47.464095"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:22:55.742334"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:23:03.815463"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:23:11.929546"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:23:20.202371"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:23:28.365727"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T01:23:36.435636"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T09:49:31.010295"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T09:49:39.013357"
+  },
+  {
+    "message": "\u26a0\ufe0f Sensor data invalid \u2014 AI decisions paused",
+    "category": "warning",
+    "timestamp": "2026-03-29T09:49:47.017784"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned peltier ON \u2014 AI decision",
+    "category": "ai",
+    "timestamp": "2026-03-29T09:51:17.560959"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to MANUAL mode",
+    "category": "system",
+    "timestamp": "2026-03-29T09:53:45.490527"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to AUTO mode",
+    "category": "system",
+    "timestamp": "2026-03-29T09:53:46.917961"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to MANUAL mode",
+    "category": "system",
+    "timestamp": "2026-03-29T09:53:49.554710"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to AUTO mode",
+    "category": "system",
+    "timestamp": "2026-03-29T09:56:06.558199"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to MANUAL mode",
+    "category": "system",
+    "timestamp": "2026-03-29T09:56:07.461446"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to AUTO mode",
+    "category": "system",
+    "timestamp": "2026-03-29T11:31:27.233407"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to MANUAL mode",
+    "category": "system",
+    "timestamp": "2026-03-29T11:31:30.385074"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to AUTO mode",
+    "category": "system",
+    "timestamp": "2026-03-29T11:36:41.310580"
+  },
+  {
+    "message": "\ud83e\udd16 AI turned fan OFF \u2014 \ud83c\udf21\ufe0f Temperature normal (26\u00b0C) \u2014 fan not needed",
+    "category": "ai",
+    "timestamp": "2026-03-29T11:36:45.319210"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to MANUAL mode",
+    "category": "system",
+    "timestamp": "2026-03-29T11:36:45.827690"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to AUTO mode",
+    "category": "system",
+    "timestamp": "2026-03-29T11:45:11.248808"
+  },
+  {
+    "message": "\ud83d\udd04 System switched to MANUAL mode",
+    "category": "system",
+    "timestamp": "2026-03-29T11:45:24.196647"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-04-02T16:49:11.869232"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-04-02T19:45:17.984546"
+  },
+  {
+    "message": "\ud83d\ude80 Automation loop started",
+    "category": "system",
+    "timestamp": "2026-04-02T20:25:44.567330"
+  }
+]

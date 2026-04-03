@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.env
+
+# Logs
+*.log
+app.log
+blynk_bridge.log
+
+# IDE
+.vscode/
+.kiro/
+.idea/
+
+# Data (runtime generated)
+data/*.db
+sensor_data.json
+
+# OS
+.DS_Store
+Thumbs.db

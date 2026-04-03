@@ -1,0 +1,67 @@
+[
+  {
+    "action": "stop",
+    "mode": "manual",
+    "timestamp": "2026-03-28T14:49:14.909262"
+  },
+  {
+    "action": "start",
+    "mode": "manual",
+    "moisture": 0,
+    "duration_min": 0,
+    "timestamp": "2026-03-28T14:49:15.522541"
+  },
+  {
+    "action": "stop",
+    "mode": "manual",
+    "timestamp": "2026-03-28T14:49:16.255492"
+  },
+  {
+    "action": "start",
+    "mode": "manual",
+    "moisture": 0,
+    "duration_min": 0,
+    "timestamp": "2026-03-28T15:02:33.762585"
+  },
+  {
+    "action": "stop",
+    "mode": "manual",
+    "timestamp": "2026-03-28T15:02:34.870382"
+  },
+  {
+    "action": "start",
+    "mode": "manual",
+    "moisture": 0,
+    "duration_min": 0,
+    "timestamp": "2026-03-28T15:02:35.555971"
+  },
+  {
+    "action": "stop",
+    "mode": "manual",
+    "timestamp": "2026-03-28T15:02:36.447154"
+  },
+  {
+    "action": "start",
+    "mode": "manual",
+    "moisture": 0,
+    "duration_min": 0,
+    "timestamp": "2026-03-28T15:03:43.672517"
+  },
+  {
+    "action": "stop",
+    "mode": "manual",
+    "timestamp": "2026-03-28T15:03:44.113667"
+  },
+  {
+    "action": "start",
+    "mode": "manual",
+    "moisture": 0,
+    "duration_min": 0,
+    "timestamp": "2026-03-28T15:08:12.443937"
+  },
+  {
+    "action": "stop",
+    "mode": "manual",
+    "timestamp": "2026-03-28T15:08:12.665380"
+  }
+]

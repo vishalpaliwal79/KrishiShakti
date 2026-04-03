@@ -1,0 +1,25 @@
+{
+  "pump": {
+    "on": false,
+    "mode": "manual",
+    "duration_min": 17.5,
+    "last_changed": "2026-04-02T18:57:21.327350"
+  },
+  "fan": {
+    "on": false,
+    "mode": "manual",
+    "speed": "off",
+    "last_changed": "2026-04-02T20:29:41.824394"
+  },
+  "heater": {
+    "on": false,
+    "mode": "manual",
+    "last_changed": "2026-03-28T14:49:19.280535"
+  },
+  "peltier": {
+    "on": true,
+    "mode": "manual",
+    "awg_mode": "awg",
+    "last_changed": "2026-03-29T11:45:17.343309"
+  }
+}

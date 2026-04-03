@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Control Panel - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="control.css">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<nav class="top-nav">
+    <div class="nav-left">
+        <div class="logo"><span class="logo-icon">🎛️</span><span class="logo-text">KrishiShakti</span></div>
+    </div>
+    <div class="nav-center">
+        <div class="search-bar"><span class="search-icon">🔍</span><input type="text" placeholder="Search..."></div>
+    </div>
+    <div class="nav-right">
+        <div class="nav-item"><span class="icon">🔔</span><span class="badge" id="alert-badge">0</span></div>
+        <div class="user-menu">
+            <div class="user-avatar"><span id="user-initial">U</span></div>
+        </div>
+    </div>
+</nav>
+
+<aside class="sidebar">
+    <div class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><span class="menu-icon">📊</span><span class="menu-text">Dashboard</span></a>
+        <a href="analytics.html" class="menu-item"><span class="menu-icon">📈</span><span class="menu-text">Analytics</span></a>
+        <a href="agriculture.html" class="menu-item"><span class="menu-icon">🌱</span><span class="menu-text">Agriculture AI</span></a>
+        <a href="chatbot.html" class="menu-item"><span class="menu-icon">🤖</span><span class="menu-text">AI Chatbot</span></a>
+        <a href="control.html" class="menu-item active"><span class="menu-icon">🎛️</span><span class="menu-text">Control Panel</span></a>
+        <a href="alerts.html" class="menu-item"><span class="menu-icon">🔔</span><span class="menu-text">Alerts</span></a>
+        <a href="history.html" class="menu-item"><span class="menu-icon">📜</span><span class="menu-text">History</span></a>
+        <a href="settings.html" class="menu-item"><span class="menu-icon">⚙️</span><span class="menu-text">Settings</span></a>
+    </div>
+    <div class="sidebar-footer">
+        <a href="/" class="menu-item"><span class="menu-icon">🏠</span><span class="menu-text">Home</span></a>
+    </div>
+</aside>
+
+<div class="main-content">
+<div class="container">
+
+    <!-- Page Header -->
+    <div class="ctrl-header">
+        <div>
+            <h1>🎛️ IoT Control Panel</h1>
+            <p>Smart Agriculture & Water Generation Control System</p>
+        </div>
+        <div class="header-right">
+            <!-- System Mode Toggle -->
+            <div class="system-mode-wrap">
+                <span class="mode-label">System Mode:</span>
+                <div class="mode-toggle-group">
+                    <button class="mode-btn active" id="btn-auto"  onclick="setSystemMode('auto')">🤖 Auto</button>
+                    <button class="mode-btn"         id="btn-manual" onclick="setSystemMode('manual')">👤 Manual</button>
+                </div>
+            </div>
+            <div class="env-state-badge" id="hw-status-badge">
+                <span class="env-dot" id="hw-dot"></span>
+                <span id="hw-state-text">Arduino: Checking...</span>
+            </div>
+            <div class="env-state-badge" id="env-state-badge">
+                <span class="env-dot"></span>
+                <span id="env-state-text">Normal</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto mode indicator banner -->
+    <div class="auto-banner" id="auto-banner">
+        🤖 <strong>AI is controlling the system</strong> — device toggles are disabled in Auto mode.
+        <button onclick="setSystemMode('manual')" class="banner-btn">Switch to Manual</button>
+    </div>
+    <div class="manual-banner" id="manual-banner" style="display:none">
+        👤 <strong>Manual mode active</strong> — AI decisions will not override your controls.
+        <button onclick="setSystemMode('auto')" class="banner-btn">Switch to Auto</button>
+    </div>
+
+    <!-- Live Sensor Strip -->
+    <div class="sensor-strip">
+        <div class="strip-item"><span class="strip-icon">🌡️</span><span id="s-temp">--°C</span><span class="strip-label">Temp</span></div>
+        <div class="strip-item"><span class="strip-icon">💧</span><span id="s-hum">--%</span><span class="strip-label">Humidity</span></div>
+        <div class="strip-item"><span class="strip-icon">🌱</span><span id="s-moist">--%</span><span class="strip-label">Soil</span></div>
+        <div class="strip-item"><span class="strip-icon">🪣</span><span id="s-tank">-- cm</span><span class="strip-label">Tank</span></div>
+        <div class="strip-item"><span class="strip-icon">💨</span><span id="s-air">--</span><span class="strip-label">Air Status</span></div>
+    </div>
+
+    <!-- AI Decision Panel -->
+    <div class="ai-panel modern-card">
+        <div class="ai-panel-header">
+            <div>
+                <h2>🧠 AI Decision Engine</h2>
+                <p>Real-time analysis and automated control recommendations</p>
+            </div>
+            <div class="ai-controls">
+                <button class="btn-ai-run" onclick="runAI()">▶ Run AI Now</button>
+                <label class="auto-toggle">
+                    <input type="checkbox" id="auto-ai" checked onchange="toggleAutoAI(this)">
+                    <span>Auto (8s)</span>
+                </label>
+            </div>
+        </div>
+        <div class="ai-confidence-bar">
+            <span>AI Confidence:</span>
+            <div class="conf-bar"><div class="conf-fill" id="conf-fill" style="width:85%"></div></div>
+            <span id="conf-pct">85%</span>
+        </div>
+        <div class="ai-explanation" id="ai-explanation">
+            <div class="ai-loading">⏳ Click "Run AI Now" to get decision...</div>
+        </div>
+        <div id="sensor-warning" class="sensor-warning" style="display:none">
+            ⚠️ Waiting for valid sensor data — connect your sensors and start the simulator
+        </div>
+        <div class="ai-meta" id="ai-meta"></div>
+    </div>
+
+    <!-- Device Control Grid — only available hardware shown -->
+    <div class="device-grid">
+
+        <!-- Pump -->
+        <div class="device-card modern-card" id="card-pump">
+            <div class="device-header">
+                <div class="device-icon gradient-blue">💧</div>
+            </div>
+            <h3>Water Pump</h3>
+            <p class="device-sub">Irrigation System</p>
+            <div class="toggle-row">
+                <span class="toggle-label" id="label-pump">OFF</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-pump" onchange="toggleDevice('pump', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="device-detail" id="detail-pump">Duration: -- min</div>
+        </div>
+
+        <!-- Fan -->
+        <div class="device-card modern-card" id="card-fan">
+            <div class="device-header">
+                <div class="device-icon gradient-purple">🌀</div>
+            </div>
+            <h3>Cooling Chamber Motor</h3>
+            <p class="device-sub">Temperature Control</p>
+            <div class="toggle-row">
+                <span class="toggle-label" id="label-fan">OFF</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-fan" onchange="toggleDevice('fan', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="device-detail" id="detail-fan">Speed: off</div>
+        </div>
+
+
+    <!-- Activity Log -->
+    <div class="activity-panel modern-card">
+        <div class="irr-header">
+            <h2>📡 AI Activity Log</h2>
+            <button class="btn-refresh" onclick="loadActivity()">🔄 Refresh</button>
+        </div>
+        <div id="activity-list" class="activity-list">
+            <div style="color:#888;padding:16px;text-align:center">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Irrigation History -->
+    <div class="irr-panel modern-card">
+        <div class="irr-header">
+            <h2>📋 Irrigation History</h2>
+            <button class="btn-refresh" onclick="loadIrrigationHistory()">🔄 Refresh</button>
+        </div>
+        <div class="irr-table-wrap">
+            <table class="irr-table">
+                <thead><tr><th>Time</th><th>Action</th><th>Mode</th><th>Moisture</th><th>Duration</th></tr></thead>
+                <tbody id="irr-tbody"><tr><td colspan="5" style="text-align:center;padding:20px;color:#888">Loading...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script src="control.js"></script>
+</body>
+</html>

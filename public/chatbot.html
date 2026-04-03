@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - KrishiShakti</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="theme-toggle.js"></script>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">KrishiShakti - AI Assistant</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="location-info">
+                <span class="location-icon">📍</span>
+                <span id="location-text">Detecting location...</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span id="user-initial">U</span>
+                </div>
+                <div class="user-info">
+                    <span id="welcome-user">User</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="analytics.html" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span class="menu-text">Analytics</span>
+            </a>
+            <a href="agriculture.html" class="menu-item">
+                <span class="menu-icon">🌱</span>
+                <span class="menu-text">Agriculture AI</span>
+            </a>
+            <a href="chatbot.html" class="menu-item active">
+                <span class="menu-icon">🤖</span>
+                <span class="menu-text">AI Chatbot</span>
+            </a>
+            <a href="control.html" class="menu-item">
+                <span class="menu-icon">🎛️</span>
+                <span class="menu-text">Control Panel</span>
+            </a>
+            <a href="alerts.html" class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Alerts</span>
+            </a>
+            <a href="history.html" class="menu-item">
+                <span class="menu-icon">📜</span>
+                <span class="menu-text">History</span>
+            </a>
+            <a href="settings.html" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="/" class="menu-item">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Home</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🤖 AI Farming Assistant</h1>
+                <p>Ask me anything about farming, crops, sensors, or agriculture</p>
+                <div class="language-banner">
+                    <span class="lang-icon">🌍</span>
+                    <span class="lang-text">Speak in your language: English | हिंदी | ਪੰਜਾਬੀ</span>
+                </div>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Hello! नमस्ते! ਸਤ ਸ੍ਰੀ ਅਕਾਲ!<br><br>
+                                I'm your AI Farming Assistant. I speak <strong>English, Hindi (हिंदी), and Punjabi (ਪੰਜਾਬੀ)</strong>!<br><br>
+                                I can help you with:
+                                <ul>
+                                    <li>🌱 Crop health & disease (फसल स्वास्थ्य / ਫਸਲ ਸਿਹਤ)</li>
+                                    <li>💧 Irrigation advice (सिंचाई सलाह / ਸਿੰਚਾਈ ਸਲਾਹ)</li>
+                                    <li>🌿 Fertilizer tips (खाद सलाह / ਖਾਦ ਸਲਾਹ)</li>
+                                    <li>🐛 Pest control (कीट नियंत्रण / ਕੀੜੇ ਕੰਟਰੋਲ)</li>
+                                    <li>📊 Sensor readings (सेंसर डेटा / ਸੈਂਸਰ ਡਾਟਾ)</li>
+                                    <li>🌤️ Weather advice (मौसम सलाह / ਮੌਸਮ ਸਲਾਹ)</li>
+                                </ul>
+                                <strong>Ask me in your language!</strong> / <strong>अपनी भाषा में पूछें!</strong> / <strong>ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ ਪੁੱਛੋ!</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="quick-btn" onclick="sendQuickMessage('What are my current sensor readings?')">
+                        📊 Current Sensors
+                    </button>
+                    <button class="quick-btn" onclick="sendQuickMessage('How is my crop health?')">
+                        🌱 Crop Health
+                    </button>
+                    <button class="quick-btn" onclick="sendQuickMessage('When should I irrigate?')">
+                        💧 Irrigation
+                    </button>
+                    <button class="quick-btn" onclick="sendQuickMessage('What fertilizer should I use?')">
+                        🌿 Fertilizer
+                    </button>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-container">
+                    <textarea 
+                        id="chat-input" 
+                        placeholder="Ask me anything about farming..."
+                        rows="1"
+                        onkeydown="handleKeyPress(event)"
+                    ></textarea>
+                    <button id="send-btn" onclick="sendMessage()">
+                        <span id="send-icon">📤</span>
+                    </button>
+                </div>
+
+                <!-- API Status -->
+                <div class="api-status" id="api-status">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">Ready</span>
+                </div>
+            </div>
+
+            <!-- Info Card -->
+            <div class="info-card">
+                <h3>💡 Tips for Better Responses</h3>
+                <ul>
+                    <li>Be specific about your crops and conditions</li>
+                    <li>Mention your location and climate if relevant</li>
+                    <li>Ask follow-up questions for more details</li>
+                    <li>Include sensor readings for accurate advice</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>
